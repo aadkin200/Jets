@@ -1,2 +1,5 @@
-hot air jetty balloon,25,100,5300
-F14,1500,1700,250
+FighterJet,SR-71 Blackbird,2500,3337,34000000
+FighterJet,XB-70 Valkyrie,2050,3725,750000000
+CargoPlane,C-17 Globemaster 3,590,6456,200000000
+CargoPlane,A400M Atlas,513,2049,181000000
+Flying Saucer,Flying Saucer,-1,-1,-1
