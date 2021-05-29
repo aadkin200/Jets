@@ -3,15 +3,14 @@ package com.skilldistillery.jets.app;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import com.skilldistillery.jets.entity.AirField;
+import com.skilldistillery.jets.entity.CargoCarrier;
 import com.skilldistillery.jets.entity.CargoPlane;
+import com.skilldistillery.jets.entity.CombatReady;
 import com.skilldistillery.jets.entity.FighterJet;
 import com.skilldistillery.jets.entity.FlyingSaucer;
-import com.skilldistillery.jets.entity.Jet;
 
 public class JetsApplication {
 	private Scanner input = new Scanner(System.in);
@@ -141,8 +140,8 @@ public class JetsApplication {
 //	finds any CargoPlane objects currently in the AirField list and invokes their loadCargo() method
 	public void loadAllCargoJets(AirField airField) {
 		for(int i = 0; i<airField.getJets().size(); i++) {
-			if(airField.getJets().get(i) instanceof CargoPlane) {
-				((CargoPlane)airField.getJets().get(i)).loadCargo();
+			if(airField.getJets().get(i) instanceof CargoCarrier) {
+				((CargoCarrier) airField.getJets().get(i)).loadCargo();
 			}
 		}
 	}
@@ -150,8 +149,8 @@ public class JetsApplication {
 //	finds any FighterJet objects currently in the AirField list and invokes their fight() method
 	public void dogFight(AirField airField) {
 		for(int i = 0; i<airField.getJets().size(); i++) {
-			if(airField.getJets().get(i) instanceof FighterJet) {
-				((FighterJet)airField.getJets().get(i)).fight();
+			if(airField.getJets().get(i) instanceof CombatReady) {
+				((CombatReady) airField.getJets().get(i)).fight();
 			}
 		}
 	}
@@ -196,16 +195,49 @@ public class JetsApplication {
 	
 //	Removes object based on user choice
 	public void removeAJetFromFleet(AirField airField) {
-		System.out.println("Select a jet to remove: ");
+		System.out.println("Remove jet by: ");
+		System.out.println("1. Number");
+		System.out.println("2. Name");
+		int choice = choice();
+		switch(choice) {
+		case 1:
+			removeAJetFromFleetByNumber(airField);
+			break;
+		case 2:
+			removeAJetFromFleetByName(airField);
+			break;
+		}
+	}
+	
+	public void removeAJetFromFleetByNumber(AirField airField) {
 		for(int i = 0; i<airField.getJets().size(); i++) {
 			System.out.println("-----------------------------------");
 			System.out.println((i+1) + ". ");
 			System.out.println(airField.getJets().get(i).toString());
 			System.out.println("-----------------------------------");
 		}
+		System.out.println("Select a jet to remove: ");
 		int choice = choice();
 		airField.getJets().remove(choice-1);
 		System.out.println();
+		
+	}
+	
+	public void removeAJetFromFleetByName(AirField airField) {
+		for(int i=0; i<airField.getJets().size(); i++) {
+			System.out.println("-----------------------------------");
+			System.out.println(airField.getJets().get(i).toString());
+			System.out.println("-----------------------------------");
+		}
+		System.out.println("Type in the model of the jet to remove:");
+		String choice = input.nextLine();
+		for(int i=0; i<airField.getJets().size(); i++) {
+			if(choice.equalsIgnoreCase(airField.getJets().get(i).getModel())) {
+				airField.getJets().remove(i);
+			}
+		}
+		
+		
 	}
 	
 //	Allows user to select individual jet's fly()

@@ -9,7 +9,7 @@ public class CargoPlane extends Jet implements CargoCarrier{
 
 	@Override
 	public void fly() {
-		System.out.println(this.getModel() + "is flying as a Cargo Plane!!!");
+		System.out.println(this.getModel() + " can fly for " + (this.getRange() / this.getSpeed()) + " hours while flying at top speed!");
 		
 	}
 
