@@ -9,7 +9,7 @@ public class FighterJet extends Jet implements CombatReady{
 
 	@Override
 	public void fly() {
-		System.out.println("Fighter Jets SONIC BOOM!!!!!!");
+		System.out.println(this.getModel() + " does a SONIC BOOM!!!!!!");
 	}
 
 

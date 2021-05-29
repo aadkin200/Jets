@@ -12,7 +12,7 @@ public class FlyingSaucer extends Jet implements Hover{
 
 	@Override
 	public void fly() {
-		System.out.println("hover BLOOP BLOOP");
+		System.out.println(this.getModel() + " does a hover BLOOP BLOOP");
 	}
 
 }

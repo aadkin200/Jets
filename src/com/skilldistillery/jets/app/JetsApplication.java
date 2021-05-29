@@ -43,7 +43,8 @@ public class JetsApplication {
 			System.out.println("7.  Add a jet to Fleet            |");
 			System.out.println("8.  Remove a jet from Fleet       |");
 			System.out.println("9.  Sauce the Flyers              |");
-			System.out.println("10. Exit                          |");
+			System.out.println("10. Fly individual jet            |");
+			System.out.println("11. Exit                          |");
 			System.out.println("----------------------------------|");
 
 			int choice = app.choice();
@@ -76,6 +77,9 @@ public class JetsApplication {
 				flyingSaucerMove(airField);
 				break;
 			case 10:
+				flyIndividualJet(airField);
+				break;
+			case 11:
 				System.out.println("Thanks for playing!");
 				System.exit(0);
 				break;
@@ -204,6 +208,19 @@ public class JetsApplication {
 		System.out.println();
 	}
 	
+//	Allows user to select individual jet's fly()
+	public void flyIndividualJet(AirField airField) {
+		System.out.println("Select a jet to fly: ");
+		for(int i=0; i<airField.getJets().size(); i++) {
+			System.out.println("-----------------------------------");
+			System.out.println((i+1) + ". ");
+			System.out.println(airField.getJets().get(i).toString());
+			System.out.println("-----------------------------------");
+		}
+		int choice = choice();
+		airField.getJets().get(choice-1).fly();
+	}
+ 	
 //	OVERVIEW: Pulls Strings from jets.txt, stores Strings in an array, parses the Strings into correct primitive data type, then creates objects.
 	public AirField createAirfield(JetsApplication app) {
 		AirField airField = new AirField();
